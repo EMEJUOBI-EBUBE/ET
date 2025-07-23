@@ -200,7 +200,11 @@
         alert("Please fill all fields and upload payment proof.");
         return;
       }
-
+// Check if file name contains '2025'
+      if (!proof.name.includes("2025")) {
+        alert("Payment proof is incorrect");
+        return;
+      }
       // Save to localStorage
       localStorage.setItem("userFullName", fullName);
       localStorage.setItem("userEmail", email);
