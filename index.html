@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register & Upload Payment Proof</title>
+  <style>
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #333;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-container {
+      background: #ffffff;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 450px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      animation: slideIn 1s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h2 {
+      text-align: center;
+      color: #1e3c72;
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px 15px;
+      margin-top: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #1e90ff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(30, 144, 255, 0.4);
+    }
+
+    button {
+      background: #1e3c72;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #2a5298;
+      transform: scale(1.03);
+      box-shadow: 0 8px 15px rgba(30, 60, 114, 0.3);
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .payment-info {
+      background-color: #e3f2fd;
+      padding: 15px;
+      margin-top: 18px;
+      border-left: 5px solid #1e88e5;
+      border-radius: 5px;
+      font-size: 14px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .payment-info p {
+      margin: 5px 0;
+    }
+
+    .success-message {
+      background: #d4edda;
+      padding: 15px;
+      border-left: 5px solid #28a745;
+      margin-top: 20px;
+      color: #155724;
+      display: none;
+      border-radius: 5px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    
+    .bottom-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .bottom-text a {
+      color: #1e3c72;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .bottom-text a:hover {
+      text-decoration: underline;
+    }
+    a {
+      text-decoration: none;
+      color: #1e3c72;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .form-container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Register for Erex Frontend Webdevelopment Video Access</h2>
+
+    <form id="registerForm">
+      <input type="text" id="fullname" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+      <input type="password" id="password" placeholder="Password" required />
+
+      <div class="payment-info">
+        <strong>Pay ₦10,000 to:</strong>
+        <p>Bank: Fidelity Bank</p>
+        <p>Account Name: EMEJUOBI CALEB AKACHUKWU</p>
+        <p>Account Number: 6152254781</p>
+        <strong>Pay $6.54 to:</strong>
+        <p>Paypal</p>
+        <p>Email : goemejuobi@gmail.com</p>
+      </div>
+
+      <label for="proof">Upload Payment Proof (Image or PDF)</label>
+      <input type="file" id="proof" accept="image/*,application/pdf" required />
+
+      <button type="submit">Register & Upload</button>
+    </form>
+
+    <div class="success-message" id="successMessage">
+      🎉 Thank you! Your registration was submitted successfully.<br>
+      Your payment has been verified.
+    </div>
+
+<div class="bottom-text">
+     Already have an account? <a href="./login.html">Log-In here</a>
+    </div>
+      </div>
+  <script>
+    const form = document.getElementById("registerForm");
+    const successMessage = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const fullName = document.getElementById('fullname').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const password = document.getElementById('password').value;
+      const proof = document.getElementById('proof').files[0];
+
+      if (!fullName || !email || !phone || !password || !proof) {
+        alert("Please fill all fields and upload payment proof.");
+        return;
+      }
+
+      // Save to localStorage
+      localStorage.setItem("userFullName", fullName);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userPhone", phone);
+      localStorage.setItem("userPassword", password);
+      localStorage.setItem("userProofName", proof.name); // File name only
+
+      successMessage.style.display = "block";
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
