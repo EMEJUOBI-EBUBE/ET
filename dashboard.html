@@ -59,6 +59,71 @@
       color: #1e3c72;
       text-decoration: underline;
     }
+    .video-section {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.video-section h2 {
+  text-align: center;
+  color: #1e3c72;
+  margin-bottom: 25px;
+  font-size: 26px;
+  animation: fadeIn 1.2s ease;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.video-wrapper:hover {
+  transform: scale(1.02);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .video-section {
+    padding: 15px;
+  }
+
+  .video-section h2 {
+    font-size: 20px;
+  }
+}
+
 
     .video-section {
       margin-top: 30px;
@@ -156,7 +221,31 @@
     <h2>Video Access</h2>
     <h2>Videos will be released from the 4th of august 2025</h2>
     <a href="./4 Weeks Frontend Web Development Note (1).pdf" download>Get the handout we will be using for this section.</a>
-    <div class="video-section">
+      <div class="video-section">
+  <h2>Frontend Development Lessons</h2>
+
+  <!-- Replace the "src" with your actual YouTube video URL -->
+  <div class="video-wrapper">
+    <iframe
+      src="https://youtu.be/20UqnvDPpDg"
+      title="Introduction To HTML"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <!-- Add more videos as needed -->
+  <div class="video-wrapper">
+    <iframe
+      src="https://youtu.be/0iK18sbsc4U"
+      title="Introduction To HTML Part "
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
       <!-- <div class="video-card">
         <h4>Lesson 1: Introduction to HTML</h4>
         <video controls>
@@ -183,7 +272,6 @@
         </video>
         <a href="videos/js-fundamentals.mp4" class="download-btn" download>Download</a>
       </div> -->
-    </div>
 
     <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
@@ -205,3 +293,4 @@
 
 </body>
 </html>
+
